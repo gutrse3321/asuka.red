@@ -6,12 +6,8 @@
  * -----
  */
 import {Render} from "../Render";
-import {IOptions} from "../common/base";
 
 export class Asuka extends Render {
-
-  protected options: IOptions;
-  protected el: HTMLElement;
 
   protected render(): void {
   }

@@ -9,19 +9,26 @@ import { IOptions } from "./common/base";
 
 export abstract class Render {
 
-    protected abstract options: IOptions;
+    protected options: IOptions;
     protected el: HTMLElement;
+
+    constructor(options: IOptions = {parent: document.body}) {
+        this.el = document.createElement("div");
+        this.options = options;
+        this.render();
+    }
 
     /**
      * 主体逻辑方法
      */
     protected abstract render(): void;
 
-    protected addMainElement(tagName: string = 'div') {
+    protected addMainElement(tagName: string = 'div'): HTMLElement {
         this.el = this.createElement(tagName);
         this.addMainClasses();
         this.appendChild(this.options.parent, this.el, false);
-        this.render()
+
+        return this.el
     }
 
     private addMainClasses() {
@@ -30,8 +37,8 @@ export abstract class Render {
         if (typeof opts.className === 'string') {
             this.addClass(this.el, opts.className);
         } else {
-            for (let i = 0; i < opts.className.length; i++) {
-                this.addClass(this.el, opts.className[i]);
+            for (let i = 0; i < (<Array<string>>opts.className).length; i++) {
+                this.addClass(this.el, (<Array<string>>opts.className)[i]);
             }
         }
     }
