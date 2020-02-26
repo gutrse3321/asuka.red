@@ -11,7 +11,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import {CleanWebpackPlugin} from "clean-webpack-plugin";
 
 const config: webpack.Configuration = {
-  entry: './src/main.ts',
+  entry: './src/main.tsx',
   output: {
     filename: 'app.[hash].js',
     path: path.resolve(__dirname, './dist')

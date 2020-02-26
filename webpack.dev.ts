@@ -16,9 +16,10 @@ const PORT: number = 3000;
 const config: Configuration = {
   ...WebpackCommonConfig,
   entry: [
+      "react-hot-loader/patch",
       "webpack-dev-server/client?/",
       "webpack/hot/dev-server",
-      path.resolve(__dirname, "./src/main.ts")
+      path.resolve(__dirname, "./src/main.tsx")
   ],
   devtool: "inline-source-map",
   devServer: {
@@ -36,41 +37,47 @@ const config: Configuration = {
     port: PORT
   },
   plugins: [
-    // new CleanWebpackPlugin({
-    //   cleanOnceBeforeBuildPatterns: [path.resolve(process.cwd(), 'dist')]
-    // }),
     new FriendlyErrorsWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, './public/index.html')
+      template: path.resolve(__dirname, "./public/index.html")
     }),
     new HotModuleReplacementPlugin()
   ],
   module: {
     rules: [
       {
+        enforce: "pre",
         test: /\.(ts|tsx)$/,
-        use: 'ts-loader',
+        use: [
+          {
+            loader: "react-hot-loader/webpack"
+          },
+          {
+            loader: "babel-loader",
+            options: { cacheDirectory: true }
+          }
+        ],
         exclude: /node_modules/
       },
       {
         test: /\.(css|styl)$/,
         use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          'stylus-loader'
+          "style-loader",
+          "css-loader",
+          "postcss-loader",
+          "stylus-loader"
         ]
       },
       {
         test: /\.(png|svg|jpg|webp)$/,
         use: [
           {
-            loader: 'url-loader',
+            loader: "url-loader",
             options: {
               limit: 10240,
-              name: '[name]-[hash:7].[ext]',
-              publicPath: 'img',
-              outputPath: 'img'
+              name: "[name]-[hash:7].[ext]",
+              publicPath: "img",
+              outputPath: "img"
             }
           }
         ]
@@ -79,12 +86,12 @@ const config: Configuration = {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
           {
-            loader: 'url-loader',
+            loader: "url-loader",
             options: {
               limit: 1000,
-              name: '[name]-[hash:7].[ext]',
-              outputPath: 'font',
-              publicPath: 'font'
+              name: "[name]-[hash:7].[ext]",
+              outputPath: "font",
+              publicPath: "font"
             },
           }
         ]

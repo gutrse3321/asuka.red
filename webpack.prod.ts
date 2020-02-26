@@ -30,7 +30,7 @@ const config: Configuration = {
   },
   plugins: [
     new WebpackBar({
-      name: 'red',
+      name: 'asuka.red',
       color: '#FF4040'
     }),
     new CleanWebpackPlugin({
@@ -49,7 +49,7 @@ const config: Configuration = {
     rules: [
       {
         test: /\.(ts|tsx)$/,
-        use: 'ts-loader',
+        use: 'babel-loader',
         exclude: /node_modules/
       },
       {
