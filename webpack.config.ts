@@ -7,6 +7,8 @@
  */
 import path from 'path';
 import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import {CleanWebpackPlugin} from "clean-webpack-plugin";
 
 const config: webpack.Configuration = {
   entry: './src/main.ts',
@@ -14,30 +16,7 @@ const config: webpack.Configuration = {
     filename: 'app.[hash].js',
     path: path.resolve(__dirname, './dist')
   },
-  module: {
-    rules: [
-      {
-        test: /\.(ts|tsx)$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
-      },
-      {
-        test: /\.(css|styl)$/,
-        use: [
-            'style-loader',
-            'css-loader',
-            'postcss-loader',
-            'stylus-loader'
-        ]
-      },
-      {
-        test: /\.(png|svg|jpg|webp)$/,
-        use: [
-            'url-loader?limit=30000'
-        ]
-      }
-    ]
-  },
+  stats: { children: false },
   resolve: {
     extensions: ['.tsx', '.ts', '.js']
   }

@@ -7,7 +7,12 @@
  */
 import "./assets/css/index.styl"
 
-import ko from "./assets/images/ko.png"
+import ko from "./assets/images/ko.jpg"
+
+let text = document.createElement("div");
+text.className = "text";
+text.innerHTML = "会说就多说点";
+document.body.appendChild(text);
 
 let img = document.createElement("img");
 img["src"] = ko;
