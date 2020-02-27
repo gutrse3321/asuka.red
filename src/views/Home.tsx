@@ -5,8 +5,19 @@
  * @Desc: ↓ ↓ ↓ ↓ ↓
  * -----
  */
-import * as React from "react";
+import React, {FunctionComponent} from "react";
 
-export default class Home extends React.Component<any, any> {
+import ko from "../assets/images/ko.jpg"
 
-}
+
+const Home: FunctionComponent = () => {
+
+  return (
+      <div>
+        <div className="text">会说话就多说点</div>
+        <img src={ko}/>
+      </div>
+  )
+};
+
+export default Home;

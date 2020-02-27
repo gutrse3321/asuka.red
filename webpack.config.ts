@@ -5,20 +5,23 @@
  * @Desc: ↓ ↓ ↓ ↓ ↓
  * -----
  */
-import path from 'path';
-import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+import path from "path";
+import webpack from "webpack";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 import {CleanWebpackPlugin} from "clean-webpack-plugin";
 
 const config: webpack.Configuration = {
-  entry: './src/main.tsx',
+  entry: "./src/main.tsx",
   output: {
-    filename: 'app.[hash].js',
-    path: path.resolve(__dirname, './dist')
+    filename: "app.[hash].js",
+    path: path.resolve(__dirname, "./dist")
   },
   stats: { children: false },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js']
+    alias: {
+      "@": path.join(__dirname, "./src")
+    },
+    extensions: [".tsx", ".ts", ".js"]
   }
 };
 

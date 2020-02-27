@@ -6,7 +6,12 @@
  * -----
  */
 import * as React from "react";
-import ko from "./assets/images/ko.jpg"
+import {HashRouter} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router";
+
+import Home from "./views/Home";
+import E404 from "./views/E404";
+import Header from "./components/Header";
 
 interface IPropTypes {
 }
@@ -18,10 +23,20 @@ export default class App extends React.Component<IPropTypes, IStateTypes> {
 
   public render() {
     return (
-        <div>
-          <div className="text">会说话就多说点</div>
-          <img src={ko}/>
+        <div className="main">
+          <Header></Header>
+          fuck
+          <HashRouter>
+            <div className="container">
+              <Switch>
+                <Route path={"/home"} component={Home}></Route>
+                <Route path={"/404"} component={E404}></Route>
+                <Route render={() => <Redirect to={"/home"} />}></Route>
+              </Switch>
+            </div>
+          </HashRouter>
         </div>
+
     );
   }
 }
