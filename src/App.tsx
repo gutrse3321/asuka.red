@@ -25,7 +25,7 @@ export default class App extends React.Component<IPropTypes, IStateTypes> {
     return (
         <div className="main">
           <Header></Header>
-          fuck
+
           <HashRouter>
             <div className="container">
               <Switch>

@@ -3,11 +3,22 @@
 .header
   display: flex
   align-items: center
+  justify-content: space-between
   height: .6rem
-  padding-left: .3rem
   background: $color-light-red
-  font-size: .32rem
   box-shadow: 0 0 .2rem $color-light-red
-  img
-    max-height: 100%
-    max-width: 100%
+  .header-left
+    display: flex
+    align-items: center
+    margin-left: .3rem
+    height: 100%
+    font-size: .32rem
+    img
+      max-height: 100%
+      max-width: 100%
+  .header-right
+    display: flex
+    align-items: center
+    height: 100%
+    margin-right: .3rem
+    font-size: .2rem

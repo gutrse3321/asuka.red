@@ -7,8 +7,6 @@
  */
 import path from "path";
 import webpack from "webpack";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import {CleanWebpackPlugin} from "clean-webpack-plugin";
 
 const config: webpack.Configuration = {
   entry: "./src/main.tsx",
