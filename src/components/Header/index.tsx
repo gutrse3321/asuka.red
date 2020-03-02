@@ -30,7 +30,6 @@ class Header extends React.Component<IProps, IState> {
     };
   }
 
-
   render() {
     return (
         <div className="header">
