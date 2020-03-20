@@ -7,19 +7,29 @@
  */
 import React, {FunctionComponent} from "react";
 
-import ko from "../assets/images/ko.jpg"
 import Banner from "../components/Banner";
 import Input from "../components/Input";
+import Panel from "../components/Panel";
 
+import {YesNo} from "../util/Constant";
 
 const Home: FunctionComponent = () => {
+
+  const topicSubmit: (title: string, content: string) => void = async (title: string, content: string) => {
+    //TODO component request
+    console.log(`[Home] title: ${title}, content: ${content}`);
+  };
 
   return (
       <div>
         <Banner></Banner>
-        <Input></Input>
-        <div className="text">会说话就多说点</div>
-        <img src={ko}/>
+
+        <Input
+            isTopic={Boolean(YesNo.Yes)}
+            handleClick={topicSubmit}
+        ></Input>
+
+        <Panel></Panel>
       </div>
   )
 };

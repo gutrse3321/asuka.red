@@ -5,12 +5,14 @@
  * @Desc: ↓ ↓ ↓ ↓ ↓
  * -----
  */
-import React, {LegacyRef} from "react";
+import React from "react";
 import AsukaMarked from "../../util/AsukaMark";
 
 import "./input.styl"
 
 interface IProps {
+  isTopic: boolean
+  handleClick: (title: string, content: string) => void
 }
 
 interface IState {
@@ -18,14 +20,16 @@ interface IState {
   content: string
 }
 
-class Banner extends React.Component<IProps, IState> {
+class Input extends React.Component<IProps, IState> {
 
   public state: IState;
+  public props: IProps;
   private readonly titleRef: React.RefObject<HTMLInputElement>;
   private readonly contentRef: React.RefObject<HTMLTextAreaElement>;
 
   constructor(props: IProps) {
     super(props);
+
     this.state = {
       title: "",
       content: "",
@@ -36,7 +40,9 @@ class Banner extends React.Component<IProps, IState> {
 
   render() {
     return (
-        <div className="input-container">
+      <div className="input-container">
+        {
+          this.props.isTopic ?
           <input
               ref={this.titleRef}
               value={this.state.title}
@@ -44,18 +50,20 @@ class Banner extends React.Component<IProps, IState> {
               onChange={e => this.setState({title: e.target.value})}
               type="text"
               placeholder="这里是标题"
-          />
-          <textarea
-              ref={this.contentRef}
-              value={this.state.content}
-              onChange={e => this.setState({content: e.target.value})}
-              placeholder="列点什么 ..?"
-              suppressContentEditableWarning
-          ></textarea>
-          <div onClick={this.submit.bind(this)} className="submit">
-            送信
-          </div>
+          /> : null
+        }
+
+        <textarea
+          ref={this.contentRef}
+          value={this.state.content}
+          onChange={e => this.setState({content: e.target.value})}
+          placeholder="咧一下 ..?"
+          suppressContentEditableWarning
+        ></textarea>
+        <div onClick={this.submit.bind(this)} className="submit">
+          送信
         </div>
+      </div>
     )
   }
 
@@ -63,13 +71,17 @@ class Banner extends React.Component<IProps, IState> {
   }
 
   public submit() {
+    if (!this.checkStateParamsExist()) {
+      return false;
+    }
     //TODO request
-    console.log(this.state);
+    // console.log(this.state);
+    // console.log(this.marked());
+    this.props.handleClick(this.state.title, this.marked());
+    this.cleanState();
   }
 
   public textInputKeyPress(event: React.KeyboardEvent) {
-    console.log(this.checkStateParams());
-    console.log(event.charCode)
     if (event.charCode === 13) {
       if (this.state.title !== "" && this.state.content === "") {
         this.contentRef.current.focus();
@@ -77,20 +89,44 @@ class Banner extends React.Component<IProps, IState> {
     }
   }
 
-  private checkStateParams(param?: string): boolean {
+  private checkStateParamsExist(param?: string): boolean {
     let form = JSON.parse(JSON.stringify(this.state));
 
-    for (let key in form) {
-      console.log(key);
+    if (param !== undefined && param.length > 0) {
+      if (form[param] !== "") {
+        return true;
+      }
+      return false;
     }
 
-    return false;
+    if (this.props.isTopic) {
+      for (let key in form) {
+        if (form[key].length <= 0) {
+          return false;
+        }
+      }
+    } else {
+      if (form["content"].length <= 0) {
+        return false;
+      }
+    }
+
+    return true;
   }
 
-  private marked() {
-    return {__html: AsukaMarked(`# 公告
-<br> - 大成功`)}
+  /**````
+   * 清理state
+   */
+  private cleanState() {
+    this.setState({
+      title: "",
+      content: ""
+    })
+  }
+
+  private marked(): string {
+    return AsukaMarked(this.state.content);
   }
 }
 
-export default Banner;
+export default Input;

@@ -28,7 +28,10 @@ class Banner extends React.Component<IProps, IState> {
 
   render() {
     return (
-        <div className="banner-container" dangerouslySetInnerHTML={this.marked()}>
+        <div className="banner-container">
+          <span className="banner-title">公告</span>
+          <div className="banner-content" dangerouslySetInnerHTML={this.marked()}>
+          </div>
         </div>
     )
   }
@@ -37,8 +40,9 @@ class Banner extends React.Component<IProps, IState> {
   }
 
   private marked() {
-    return {__html: AsukaMarked(`# 公告
-<br> - 大成功`)}
+    return {__html: AsukaMarked(`
+- 遠征大成功
+- 武罡寺聖僧`)}
   }
 }
 
