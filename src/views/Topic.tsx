@@ -6,20 +6,36 @@
  * -----
  */
 import React from "react";
+import {RouteComponentProps} from "react-router";
 
-interface IProp {
+interface IParams {
+  id: string
+}
+
+interface IProps extends RouteComponentProps {
 
 }
 
 interface IState {
-
 }
 
-export default class Topic extends React.Component<IState, IProp> {
+export default class Topic extends React.Component<IState, IProps> {
+
+  public props: IProps;
+
+  constructor(props: IProps) {
+    super(props);
+    this.props = props;
+  }
+
+  componentDidMount(): void {
+    console.log(this.props.match.params);
+  }
 
   public render() {
     return (
-        <div>topic</div>
+        <div>t
+        </div>
     )
   }
 }

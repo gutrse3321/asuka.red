@@ -1,11 +1,9 @@
 import React from "react";
-import AsukaMarked from "../../util/AsukaMark";
 
 import "./panel.styl";
 import {TopicModel} from "../../model/TopicModel";
 import {getTime} from "../../util/tools";
 import {RouteComponentProps, withRouter} from "react-router";
-import {Link} from "react-router-dom";
 
 /**
  * @Author: Tomonori
