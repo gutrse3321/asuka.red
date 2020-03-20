@@ -38,6 +38,71 @@ export const dateFormat = (date: number | string, format: string): string => {
   return format;
 };
 
+export const getTime = (params: string | number): string => {
+  let date: Date;
+  const currentDate: Date = new Date();
+  const yesterdayDate: Date = new Date(currentDate.setTime(currentDate.getTime() - 24 * 60 * 60 * 1000));
+
+  if (typeof params === "number") {
+    date = new Date(params);
+  } else {
+    date = new Date(parseInt(params, 0));
+  }
+
+  const item: any = {
+    Y: date.getFullYear(),
+    M: date.getMonth() + 1,
+    D: date.getDate(),
+    H: date.getHours(),
+    m: date.getMinutes(),
+    s: date.getSeconds(),
+  }
+
+  const current: any = {
+    Y: currentDate.getFullYear(),
+    M: currentDate.getMonth() + 1,
+    D: currentDate.getDate() + 1,
+    H: currentDate.getHours(),
+    m: currentDate.getMinutes(),
+    s: currentDate.getSeconds(),
+  }
+
+  const yesterday: any = {
+    Y: yesterdayDate.getFullYear(),
+    M: yesterdayDate.getMonth() + 1,
+    D: yesterdayDate.getDate(),
+    H: yesterdayDate.getHours(),
+    m: yesterdayDate.getMinutes(),
+    s: yesterdayDate.getSeconds(),
+  };
+
+  if (item.Y === current.Y && item.M === current.M && item.D === current.D) {
+    if (item.H < current.H) {
+      return `${item.H - item.H}小时前`;
+    }
+
+    if (item.m < current.m) {
+      console.log(item.m);
+      console.log(current.m);
+      return `${current.m - item.m}分钟前`;
+    }
+
+    return '刚刚';
+  }
+
+  if (item.Y === yesterday.Y && item.M === yesterday.M && item.D === yesterday.D) {
+    return `昨天 ${item.H}:${parseMin(item.m)}`;
+  }
+
+  return `${item.M}-${item.D} ${item.H}:${parseMin(item.m)}`;
+};
+
+/**
+ * 分钟补零
+ * @param min
+ */
+const parseMin = (min: number): string => min < 9 ? `0${min}` : min.toString();
+
 export const checkPhoneAgent = (system: string) : boolean => {
   const ua: string = window.navigator.userAgent.toLowerCase();
 

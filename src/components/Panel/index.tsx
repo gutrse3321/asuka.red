@@ -2,6 +2,10 @@ import React from "react";
 import AsukaMarked from "../../util/AsukaMark";
 
 import "./panel.styl";
+import {TopicModel} from "../../model/TopicModel";
+import {getTime} from "../../util/tools";
+import {RouteComponentProps, withRouter} from "react-router";
+import {Link} from "react-router-dom";
 
 /**
  * @Author: Tomonori
@@ -11,7 +15,8 @@ import "./panel.styl";
  * -----
  */
 
-interface IProps {
+interface IProps extends RouteComponentProps {
+  list: Array<TopicModel>
 }
 
 interface IState {
@@ -31,7 +36,20 @@ class Panel extends React.Component<IProps, IState> {
     return (
         <div className="panel-container">
           <div className="panel-title">“会说话就多说点”</div>
-          {/*<img src={ko}/>*/}
+          <ul className="panel-list">
+            {
+              this.props.list.map((item, index) => {
+                return (
+                    <li key={index}>
+                      { getTime(item.createTime) }&nbsp;-&nbsp;
+                      {/*<Link to={`/topic/${item.id}`}>*/}
+                        <span onClick={() => this.props.history.push(`/topic/${item.id}`)}>{ item.title }</span>
+                      {/*</Link>*/}
+                    </li>
+                )
+              })
+            }
+          </ul>
         </div>
     )
   }
@@ -41,4 +59,4 @@ class Panel extends React.Component<IProps, IState> {
 
 }
 
-export default Panel;
+export default withRouter(Panel);

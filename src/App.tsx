@@ -11,6 +11,7 @@ import {Redirect, Route, Switch} from "react-router";
 
 import Home from "./views/Home";
 import E404 from "./views/E404";
+import Topic from "./views/Topic";
 import Header from "./components/Header";
 
 interface IPropTypes {
@@ -31,6 +32,7 @@ export default class App extends React.Component<IPropTypes, IStateTypes> {
               <Switch>
                 <Route path={"/home"} component={Home}></Route>
                 <Route path={"/404"} component={E404}></Route>
+                <Route path={"/topic/:id"} component={Topic}></Route>
                 <Route render={() => <Redirect to={"/home"} />}></Route>
               </Switch>
             </div>

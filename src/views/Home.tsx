@@ -12,8 +12,24 @@ import Input from "../components/Input";
 import Panel from "../components/Panel";
 
 import {YesNo} from "../util/Constant";
+import {TopicModel} from "../model/TopicModel";
 
 const Home: FunctionComponent = () => {
+
+  const list: Array<TopicModel> = [
+    {
+      id: 1,
+      title: "fuck",
+      content: "shit",
+      createTime: "1584699394289"
+    },
+    {
+      id: 2,
+      title: "other",
+      content: "shit",
+      createTime: "1584699404152"
+    }
+  ];
 
   const topicSubmit: (title: string, content: string) => void = async (title: string, content: string) => {
     //TODO component request
@@ -29,7 +45,7 @@ const Home: FunctionComponent = () => {
             handleClick={topicSubmit}
         ></Input>
 
-        <Panel></Panel>
+        <Panel list={list}></Panel>
       </div>
   )
 };
