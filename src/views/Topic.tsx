@@ -12,7 +12,7 @@ interface IParams {
   id: string
 }
 
-interface IProps extends RouteComponentProps {
+interface IProps extends RouteComponentProps<IParams> {
 
 }
 
@@ -29,7 +29,7 @@ export default class Topic extends React.Component<IState, IProps> {
   }
 
   componentDidMount(): void {
-    console.log(this.props.match.params);
+    console.log(this.props.match.params.id);
   }
 
   public render() {
