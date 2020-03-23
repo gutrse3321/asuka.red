@@ -32,12 +32,12 @@ class Header extends React.Component<IProps, IState> {
 
   render() {
     return (
-        <div className="header">
-          <div className="header-left">
+        <div className={"header"}>
+          <div className={"header-left"}>
             <img src={logoImg}/>
             <span>明日香.Red</span>
           </div>
-          <div className="header-right">
+          <div className={"header-right"}>
             <span>{this.state.dateTime}</span>
           </div>
         </div>

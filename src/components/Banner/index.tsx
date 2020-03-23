@@ -28,9 +28,9 @@ class Banner extends React.Component<IProps, IState> {
 
   render() {
     return (
-        <div className="banner-container">
-          <span className="banner-title">公告</span>
-          <div className="banner-content" dangerouslySetInnerHTML={this.marked()}>
+        <div className={"banner-container"}>
+          <span className={"banner-title"}>公告</span>
+          <div className={"banner-content"} dangerouslySetInnerHTML={this.marked()}>
           </div>
         </div>
     )

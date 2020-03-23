@@ -13,7 +13,6 @@ import App from "./App";
 import "./assets/css/index.styl"
 
 console.log(`
-
  _______                                     _ 
 |__   __|                                   (_)
    | | ___  _ __ ___   ___  _ __   ___  _ __ _ 
@@ -23,7 +22,8 @@ console.log(`
 `);
 console.info("e-mail: gutrse3321@live.com");
 
+const root = document.getElementById("app");
 ReactDOM.render(
     <App />,
-    document.getElementById("app")
+    root
 );

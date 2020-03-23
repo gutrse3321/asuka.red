@@ -32,9 +32,9 @@ class Panel extends React.Component<IProps, IState> {
 
   render() {
     return (
-        <div className="panel-container">
-          <div className="panel-title">“会说话就多说点”</div>
-          <ul className="panel-list">
+        <div className={"panel-container"}>
+          <div className={"panel-title"}>“会说话就多说点”</div>
+          <ul className={"panel-list"}>
             {
               this.props.list.map((item, index) => {
                 return (

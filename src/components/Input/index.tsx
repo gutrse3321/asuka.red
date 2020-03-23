@@ -40,7 +40,7 @@ class Input extends React.Component<IProps, IState> {
 
   render() {
     return (
-      <div className="input-container">
+      <div className={"input-container"}>
         {
           this.props.isTopic ?
           <input
