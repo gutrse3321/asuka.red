@@ -14,6 +14,8 @@ import Panel from "../components/Panel";
 import {YesNo} from "../util/Constant";
 import {TopicModel} from "../model/TopicModel";
 
+import api from "../api/v1";
+
 const Home: FunctionComponent = () => {
 
   const list: Array<TopicModel> = [
@@ -33,7 +35,11 @@ const Home: FunctionComponent = () => {
 
   const topicSubmit: (title: string, content: string) => void = async (title: string, content: string) => {
     //TODO component request
-    console.log(`[Home] title: ${title}, content: ${content}`);
+    try {
+      let resp = await api.fuck({title, content});
+    } catch (e) {
+      //TODO throws some exception
+    }
   };
 
   return (
